@@ -54,6 +54,9 @@ class Game:
         steering_x = check_x - 2*vx
         steering_y = check_y - 2*vy
 
+        X = steering_x
+        Y = steering_y
+
         # checkpoint est derrière
         if abs(a) > 90:
             thurst = THRUST_MIN
@@ -67,13 +70,8 @@ class Game:
             # debug("slowdown_for_rotation",slowdown_for_rotation)
             thurst = int(THRUST_MAX * slowdown_for_rotation)
 
-            check_x = steering_x
-            check_y = steering_y
-
         # Checkpoint est devant => A fond! Et on essaie de booster
         elif abs(a) <= ANGLE_MAX_SPEED :
-            check_x = steering_x
-            check_y = steering_y
             
             if abs(a) <= ANGLE_BOOST and d > DIST_BOOST and self.boost == 1:
                 thurst = "BOOST"
@@ -89,7 +87,7 @@ class Game:
         #on save les coordonnées du pod dans px py pour le tour d'après
         self.px,self.py = pod_x, pod_y
 
-        print(check_x,check_y,thurst)
+        print(X,Y,thurst)
 
 
 # INSTANCIATION
